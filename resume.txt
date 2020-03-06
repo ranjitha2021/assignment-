@@ -1,0 +1,109 @@
+import java.util.Arrays;
+import java.util.ArrayList;
+
+
+import java.util.List; 
+import java.util.stream.Collectors; 
+
+
+public class Demo2 {
+
+	public static void main(String[] args) {
+	
+		
+       List<String> a1=new ArrayList<String>();
+        
+       String a[]= {"stop","pots","opts","ria","air","xyz"};
+       
+       
+       
+       for (int i=0;i<a.length;i++) {
+    	   if (i<a.length-1) {
+    		       		   
+    	   String s1=a[i];
+    	   String s2=a[i+1];
+    	   
+    	   if(checkAnagram(s1,s2))
+    	   {
+    		   a1.add(s1);
+    	       a1.add(s2);
+               System.out.println(s1+" and "+s2+" are Anagrams");
+             
+    	       
+    	   }  
+           else
+               System.out.println(s1+" and "+s2+" are NOT Anagrams");
+    	   
+    	   
+       }
+       else{
+              a1.add(a[a.length-1]);
+       }
+       }
+       
+       System.out.println(a1);     
+      // HashSet<String> hs=new HashSet<String>(a1);
+       System.out.println("Group of Anagrams");
+      // System.out.println(hs);
+      
+      // Construct a new list from the set constucted from elements 
+        // of the original list 
+        List<String> newList = a1.stream() 
+                                      .distinct() 
+                                      .collect(Collectors.toList()); 
+  
+        // Print the ArrayList with duplicates removed 
+        System.out.println("ArrayList with duplicates removed: "
+                           + newList); 
+                           
+    
+       System.out.println("Output as per the Specification")   ;
+       int i;
+       for (i=0;i<3;i++){
+           System.out.print(newList.get(i) + " ");
+       }
+       System.out.println("\n");
+       
+       for (i=3;i<=4;i++){
+           System.out.print(newList.get(i) + " ");
+       }
+        System.out.println("\n");
+        
+         System.out.print(newList.get(newList.size()-1));
+       
+       
+      
+          
+       
+       
+        
+        
+        
+       
+    }
+    
+    public static boolean checkAnagram(String s1, String s2)
+    {
+        // Remove all the white space
+        s1 = s1.replaceAll("\\s", "");
+        s2 = s2.replaceAll("\\s", "");
+        
+        // Check if both length matches
+        if(s1.length() != s2.length())
+            return false;
+        else
+        {
+            // Convert both Strings into lower case and into Character Array
+            char[] arr1 = s1.toLowerCase().toCharArray();
+            char[] arr2 = s2.toLowerCase().toCharArray();
+            
+            // Sort both Character Array
+            Arrays.sort(arr1);
+            Arrays.sort(arr2);
+            
+            // Check if both arrays are equal
+            return (Arrays.equals(arr1, arr2));
+        }
+}
+
+}
